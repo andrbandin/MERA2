@@ -1,33 +1,33 @@
-#include <iostream>
-#include <ctime>
 #include "DateTime.h"
+#include <conio.h>
+#include <ctime>
+#include <stdio.h>
 
+int main(){
+	cout << "Creation of four exemplars of the date and demonstrating the method printToday:" << endl;
+	DateTime date1 = DateTime();
+	DateTime date2 = DateTime(20, 03, 2017);
+	DateTime date3 = DateTime(date1);
+	DateTime date4 = DateTime(1, 1, 2017);
+	date1.printToday();
+	date2.printToday();
+	date3.printToday();
+	date4.printToday();
 
-using namespace std;
+	cout << "Demonstrating methods printYesterday and printTomorrow:" << endl;
+	date1.printYesterday();
+	date1.printTomorrow();
 
-int main () {
-	DateTime d1;
-	d1.printToday();
-	d1.printTomorrow();
-	d1.printFuture(3);
-	d1.printPast(3);
-	d1.printMonth();
-	d1.printWeekDay();
-	d1.printYesterday();
+	cout << "Demonstrating methods printFuture and printPast in steps of 7 days:" << endl;
+	date1.printFuture(7);
+	date1.printPast(7);
 
-	DateTime d2(10, 04, 2017);
-	d2.printToday();
-	d2.printTomorrow();
-	d2.printFuture(3);
-	d2.printPast(3);
-	d2.printMonth();
-	d2.printWeekDay();
-	d2.printYesterday();
-	d2.calcDifference(d1, d2);
+	cout << "Month and week output:" << endl;
+	date1.printMonth();
+	date1.printWeekDay();
 
+	cout << "Output of the difference of days of the first and second dates: " << date1.calcDifference(date2) << endl; 
 
-	system("pause");
+	_getch();
 	return 0;
-
-
 }

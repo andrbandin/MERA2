@@ -1,7 +1,57 @@
 #include "Automata.h"
 #include <iomanip>
+#include <string>
+
+
 
 //private
+
+void Automata::get() {
+	
+
+		for (int i = 0; i < 4; i++)
+		{
+			cout << "\n Name: \t";
+			cin >> pricelist[i].au_menu;
+			cout << "\n Cost: \t";
+			cin >> pricelist[i].au_price;
+			cout << endl;
+		}
+		show();
+	}
+
+
+void Automata::show(){
+
+	for (int i = 0; i < 4; i++)
+	{
+		cout << pricelist[i].au_menu << "\t\t";
+		cout << pricelist[i].au_price << endl;
+
+	}
+	cout << endl;
+	system("pause");
+
+}
+
+
+//void Automata::get() {
+//	cout << "Enter bottle" << endl;
+//	const int n = 4;
+//	bottle aray[n] = {};
+//	for (int i = 0; i<n; i++) {
+//		cout << "\n Name: \t";
+//		cin >> aray[i].au_menu;
+//		cout << "\n Cost: \t";
+//		cin >> aray[i].au_price;
+//		cin.get();
+//
+//	}
+//	show(aray, n);
+//	cout << endl;
+//	system("pause");
+//}
+
 void Automata::on() {
 	system("cls");
 	cout << "Launching...";
@@ -25,17 +75,25 @@ void Automata::coin() {
 }
 
 void Automata::printMenu() {
+	double a = 0.7;
+	string b = "Empty";
 	cout << "Your balance: " << au_cash << " rub.\n";
 	cout << "Select a drink:" << endl;
-	cout << "Number\t\tDrink\t\t\tCost\t\t\tLitre\n";
+	cout << "Number\t\tDrink\t\t\tCost\n";
 	int num = 1;
 	for (int i = 0; i < 5; i++) {
 		if (num < 5) {
-			cout << num << "\t\t" << au_menu[i];
-			cout << "\t\t\t" << au_price[i];
-			cout << "\t\t\t" << setprecision(4) << au_litre[i] << endl;
+			cout << num << "\t\t" << pricelist[i].au_menu;
+			//cout << "\t\t\t" << au_price[i];
+			//cout << "\t\t\t" << setprecision(4) << au_litre[i] << endl;
+			if (au_litre[i] > a) { cout << "\t\t\t" << pricelist[i].au_price << endl; }
+			else if (au_litre[i] < a) { cout << "\t\t\t" << b << endl; }
+
+
 			num++;
+
 		}
+
 	}
 	cout << "...or replenish the balance (usage 'r' for replenish).\n";
 	cout << "Enter 'cancel' to receive change: ";
@@ -89,8 +147,8 @@ void Automata::choice() {
 
 void Automata::check(int number) {
 	double a = 0.7; 
-	if (au_cash >= au_price[number] && au_litre[number] >= a) {
-		au_cash -= au_price[number];
+	if (au_cash >= pricelist[number].au_price && au_litre[number] >= a) {
+		au_cash -= pricelist[number].au_price;
 		au_litre[number] -= a;
 	    au_state = COOK;
 
@@ -133,11 +191,13 @@ void Automata::delay(int sec) {
 	}
 }
 
+
 //public
+
 Automata::Automata() {
 	au_state = OFF;
 	au_cash = 0;
-	string buff;
+	/*string buff;
 	int ibuff;
 	double ilitre;
 	ifstream fin("menu.txt");
@@ -153,8 +213,11 @@ Automata::Automata() {
 		ilitre = stoi(buff);
 		au_litre[i] = ilitre;
 	}
-	fin.close();
+	fin.close();*/
 }
+
+
+
 
 void Automata::offline() {
 	string status;

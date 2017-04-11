@@ -10,9 +10,17 @@ private:
 	int au_cash;
 	enum { CHOICE, CHECK, COOK, OFF };
 	int au_count;
-	string au_menu[4];
-	int au_price[4];
-	double au_litre[4];
+	
+	struct bottle  {
+		string au_menu;
+		int au_price;
+	};
+	bottle pricelist[4];
+	double au_litre[4] = { 2,2,2,2 };
+	
+	//string au_menu[4];
+	//int au_price[4];
+
 	int au_state;
 	void on();
 	void off();
@@ -28,4 +36,6 @@ private:
 public:
 	Automata();
 	void offline();
+	void show();
+	void get();
 };
